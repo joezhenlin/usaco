@@ -1,3 +1,8 @@
+/*
+ID: ericjoe1
+LANG: C
+TASK: beads
+*/
 #include <stdio.h>
 
 typedef struct beadBlock {
