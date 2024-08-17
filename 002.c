@@ -133,3 +133,5 @@ int main () {
 
     return 0;
 }
+
+//from: https://stackoverflow.com/questions/59161306/how-to-solve-the-broken-necklace-problem-where-we-have-to-iterate-forwards-and-b
