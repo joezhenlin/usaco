@@ -6,6 +6,12 @@ An alternate approach would be to just keep an array of size a million and mark 
 that’s probably fast enough, but our above algorithm will work even on slow processors, and it’s not much harder to write.
 https://jvonk.github.io/usaco/2018/09/28/milk2.html#analysis
 */
+/*
+qsort是C标准库中的一个排序函数，它可以对任意类型的数组进行排序。qsort需要三个参数：要排序的数组、数组元素的个数和一个指向回调函数的指针。
+回调函数必须满足两个条件：能够比较数组中的元素，返回一个整数表示它们之间的大小关系；并且它应该能够被qsort函数调用。
+回调函数是一种在编程中广泛使用的技术，它允许一个函数作为参数传递给另一个函数，并在需要时被调用。这种机制使得代码更加灵活和可重用。
+qsort函数说明：https://www.runoob.com/cprogramming/c-function-qsort.html
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
