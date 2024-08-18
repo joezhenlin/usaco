@@ -18,6 +18,17 @@ int gcf(int a, int b) {
     return ans;
 }
 
+//这个方法怎么样？
+int gcd(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b; //参见数论中的欧几里得辗转相除法
+        a = temp;
+    }
+
+    return a;
+}
+
 int lcm(int a, int b) {
     int gcFactor = gcf(a, b);
 
@@ -37,7 +48,7 @@ int main(void) {
         
         fscanf(fin, "%d,%d", &a, &b);
 
-        fprintf(fout, "%d,%d\n", gcf(a, b), lcm(a, b));
+        fprintf(fout, "%d,%d\n", gcd(a, b), lcm(a, b));
     }
 
     fclose(fin);
