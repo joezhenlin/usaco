@@ -33,6 +33,7 @@ int main(void) {
     个叫fgets()的东西，但是它既在EOF停也在\n停，所以我就需要输入
     时得到一共有几行，就好用fgets()。如果有更好的方法的话教一下呗～
     */
+   /*尝试一下fgetc()这个玩意儿呗*/
 
     fscanf(fin, "%d", &lines);
 
