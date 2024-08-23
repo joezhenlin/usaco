@@ -12,8 +12,8 @@ int main(void) {
     FILE *fout = fopen("day006.out", "w");
     if (fin == NULL || fout == NULL) {return -1;}
 
-    char str[MAXLEN];
-    int lines;
+    char c;
+    int pos = 0;
 
     /*
     To Dad:
@@ -35,26 +35,24 @@ int main(void) {
     */
    /*尝试一下fgetc()这个玩意儿呗*/
 
-    fscanf(fin, "%d", &lines);
+    while (1) {
+        c = fgetc(fin);
 
-    for (int i = 0; i < lines; i++) {
-        fgets(str, MAXLEN, fin);
+        if (feof(fin)) {
+            break;
+        }
 
-        for (int j = 0; j < strlen(str); j++) {
-            if (str[j] == '\t') {
-                int spaces = j % TABSIZE;
+        if (c == '\t') {
+            int spaces = pos % TABSIZE;
 
-                for ( ; spaces > 0; spaces++) {
-                    fprintf(fout, " ");
-                }
-            } else {
-                fprintf(fout, "%c", str[j]);
+            for ( ; spaces > 0; spaces++) {
+                fprintf(fout, " ");
             }
+        } else {
+            fprintf(fout, "%c", c);
         }
 
-        if (i != lines - 1) {
-            fprintf(fout, "\n");
-        }
+        pos++;
     }
 
     fclose(fin);
