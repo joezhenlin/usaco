@@ -1,0 +1,205 @@
+\documentclass[a4paper,12pt]{article}
+
+% 导入必要的包
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cite}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{amsfonts} % for the \checkmark command 
+
+% 设置页面边距
+\geometry{left=2.5cm, right=2.5cm, top=3cm, bottom=3cm}
+
+% 参考文献样式
+\bibliographystyle{unsrt}
+
+\begin{document}
+
+% 标题页
+\title{Title}
+\author{Eric\\
+\small{CKWA} \\
+\small{eric@eric.org}}
+\date{\today}
+\maketitle
+
+% 摘要
+\begin{abstract}
+This part put abstract
+\end{abstract}
+
+% 关键词
+\textbf{Keywords :} one, two, three
+
+% 目录
+%\tableofcontents
+
+%%---------------第一章
+\section{Introduction}
+
+Goals:
+%%%%这种就能给你自动编号，生成列表
+\begin{enumerate} 
+	\item Hook reader
+	\item Introduce neutrinos:
+	%%%%%这样就可以嵌套了呢
+	\begin{enumerate}[label=\arabic*.] %%%列表前面是数字
+		\item Introduce the particle
+		\item Explain its importance
+		\item Explain my main article \textcolor{blue}{!!!!!!!!} %%%如果想改变字的颜色，也是相当的人性化
+		\item Explain how the neutrino relates to it
+	\end{enumerate}
+	\item Prove my value:
+	\begin{enumerate}[label=(\Alph*)] %%%列表前面是大写字母，\alph*就是小写字母，\roman*就是罗马数字，加不加括号随你
+		\item Use a bit of mathematics
+		\item Explain important concepts correctly
+		\item Formal insider tone
+	\end{enumerate}
+\end{enumerate}
+
+Explanation:
+\begin{enumerate}
+	\item Goal 1: Hooking the reader via an introduction is a hard yet necessary task known to everybody.
+	\item Introducing Neutrinos:
+	\begin{enumerate}
+		\item Introducing the Particle: This part needs to be brief, targeting non-expert readers, so that they won’t be a headless fly.
+		\item Explaining its Importance: Also brief, targeting non-experts, explaining why we care and mostly, why they should care as well.
+		\item Explaining my Main Article: Make my claim, VERY IMPORTANT, do early on.
+		\item Explaining how Neutrinos Relate: In most of the essay, I will be using neutrinos as some place to start and using it as most of my opinions. This point must be clearly stated.
+	\end{enumerate}
+	\item Proving my Value: All the sub-goals inside this is to increase my credibility and expertise since I’m only a 8th-grader.
+\end{enumerate}
+
+Transition into Next Section: Reason overall structure of paper and introduce, briefly, our next topic.
+
+Content:
+\begin{itemize} %%%只想用点点作为列表的样式，没问题
+	\item Introducing Neutrinos:
+	\begin{itemize} 
+		\item Mischievous troublemaker
+		\item Brief history
+		\item[$\times$] How it defied everything %%%而且你愿意的话，随便玩儿出花来都行
+		\item[\checkmark] Current theories
+	\end{itemize}
+	\item Strange relationship to matter-antimatter asymmetry
+\end{itemize}
+
+Neutrinos are a family of arguably the most mischievous particles in the Standard Model (SM). The Matter-Antimatter Asymmetry is the most fundamental problem of our universe. Taking a look of them side by side, we uncover that one explains the other. Before conclusions, though, we need to go back to the starting point.
+
+Looking briefly at neutrino history, it was unsurprising - even uneventful - at first: the particle was first introduced by Pauli in his famous letter in 1930, a “forced” move to solve continuous $\beta$ %%随便写什么希腊字母，都用这种方式，简单又优雅
+spectra. The next move, made by Fermi, advanced Pauli’s postulation into a complete theory. Then, after 22 years spent mostly on theorizing and estimating, the neutrinos were finally directly observed in 1956. Then comes its rebellious nature. The conservation of Parity, or invariance under space inversion, was long thought to be general. Neutrinos saw, and decided to rebel. The discovery of this by Lee and Yang was so surprising, they got the Nobel Prize. However, this theory which seemingly complicated everything boosted our understanding to weak processes and granted us the theory of the two-component neutrino, with equations naïvely assuming massless neutrinos. Which would be a natural guess, but neutrinos said no. Finally, with the discovery of neutrino oscillations and the cruel reality of massive neutrinos, we were forced to do two things: form a new theory of weak interactions - relatively easy - and guess where the mass came from.
+
+Currently, we have a large family of theories - the seesaws - which explain neutrino masses through slight additions to the SM like Right-Handed Neutrinos (RHNs, type of sterile neutrinos), Scalar Triplets, Higgs Triplets, etc. In this essay, I shall introduce those Seesaws, pair one with the Sphaleron Process, to conclude with one theoretical probability.
+
+
+%%%%注意注意注意，这里是引用的方法
+aaaa \cite{author2024title}
+
+
+%%---------------第二章  
+
+\section{Seesaw Mechanisms} \label{sec:seesaw} %%这种label加上之后，你后面的文章，随便引用，非常的优雅呀
+
+\subsection{Type-I Seesaw} %%%你就说，用这种sub之类的写文章，是不是让你专注内容，不用担心排版吧，就问你，优雅不？
+
+Goals:
+\begin{enumerate}
+	\item Explain the Type-I Seesaw Mechanism
+	\begin{enumerate}[label=\arabic*.] %%%列表前面是数字
+		\item Why does it Exist?
+		\item How does explain Questions?
+	\end{enumerate}
+	\item Explain Relationship to Main Article
+	\begin{enumerate}
+		\item How does it Help us Understand Matter-Antimatter Asymmetry?
+		\item Where is the Inspiration?
+		\item Explain how I’ll use this for the Most Parts.
+	\end{enumerate}
+\end{enumerate}
+
+Explanation:
+\begin{enumerate}
+	\item Goal 1: Brief part, mainly targeting people who doesn’t know, already many brief parts so don’t make it annoying
+	\item Relationship to Main Article: This is the part with the emphasis, where physicists realized how the Type-I Seesaw could explain much more than it was intended to.
+\end{enumerate}
+
+Content:
+\begin{enumerate}
+	\item Explain Type-I Seesaw Mechanism
+\end{enumerate}
+
+Transition into Next Section: Mention that not only one theory - but countless others, and more to come - had been theorized, and are all seesaws!
+
+The Type-I Seesaw is the earliest and easiest Seesaw of all. However, before we can fully understand it, we must go back to its building blocks: the Dirac-neutrino option and Majorana-neutrino option.
+
+The Dirac-neutrino option adds a massless RHN which couples via a Yukawa Lagrangian to form massive Dirac fermions, which are the current neutrinos $E=MC^2$: %%想在文字里显示公式，那就这样
+
+$$ %%%想单独一行，那就这样
+E=MC^2
+$$
+
+This hugs the standard Higgs mechanism which, after Electroweak Symmetry Breaking (EWSB) gives the Higgs field a Vacuum Expectation Value (VEV) such that the two neutrinos couple. This model has some attractions: the Electroweak scale would be identified as the fundamental energy scale to explain masses of all other particles; it could explain baryon asymmetry through a neutrinogenesis mechanism based on early decays of Degrees of Freedom (DOFs) in presence of RHNs; and its minimality. Despite these shining factors, its dark side requires some additional work for this option to be complete: tiny SM neutrino masses demand an unrealistically small Yukawa coupling; to form baryon asymmetry high energy scales must be achieved, which has no particular relationship with low energy neutrino oscillations; the EW scale fails to identify as the fundamental energy scale due to failure of direct observation of BSM particles; and imposing lepton symmetry as a global symmetry to prevent an allowed term explicitly breaking it.
+
+The Majorana-neutrino option adds yet another extension to the Dirac-neutrino option, adding a Majorana mass term to the Lagrangian:
+
+[Equation 2]
+
+In this model, since one would expect the high RHN masses to skyrocket past the EW scale, neutrino masses are not just suppressed by Yukawa couplings, but also by the minute mass ratio, leaving no need for an unrealistic Yukawa coupling. It also links baryogenesis and low-energy neutrino oscillations, due to the asymmetry being created first in the decays of leptons, then being transmitted through the Sphaleron process, a further topic. Like usual, though, it comes with its own setbacks: introducing a new particle being way past the EW scale would erase the probability of a common mass origin and the RHN masses are too big for some processes it becomes unnatural via radiative corrections. These problems could be overcame while model building, though, and are therefore way less severe.
+
+ Now, we return to the Type-I Seesaw.
+
+\subsection{Other Seesaws}
+
+Goals:
+\begin{enumerate}
+	\item Explain other Seesaws’ Existence
+	\item Explain why I’ll not Use Them:
+	\begin{enumerate}
+		\item Minimal Type-I Simplifies Problem
+		\item Roughly the Same Principle for All Seesaws
+	\end{enumerate}
+\end{enumerate}
+
+Content:
+
+Transition into Next Section: “Alrighty, let’s continue on with our lazy minimal type-I into the main part of the paper.”
+
+%%---------------第三章
+
+\section{Matter-Antimatter Asymmetry}
+
+\subsection{Leptogenesis}
+
+Goals:
+\begin{enumerate}
+	\item Explain Leptogenesis:
+	\begin{enumerate}
+		\item What is It?
+		\item Where did It Come From?
+		\item How does It Work?
+		\item …etc.
+	\end{enumerate}
+\end{enumerate}
+
+Content:
+
+Transition into Next Section: This explains lepton asymmetry, but notice how this section is not called that, but matter-antimatter asymmetry.
+
+\subsection{Conclusion}
+
+Goal: Look upon Future \& How Aforesaid Things Can Be Confirmed
+
+Content:
+%%引用的时候，你的bib文件里，写的啥，这里就怎么引用
+
+cccc \cite{author2023book}
+
+% 参考文献
+\newpage
+\bibliography{references}
+
+\end{document}
