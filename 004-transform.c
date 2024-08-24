@@ -1,32 +1,68 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
-int n = 10;
-char before[10][10], after[10][10], temp[10][10];
+// 最大矩阵尺寸
+#define MAX_SIZE 10
 
-void rotate() {
-    int r, c;
-    for (r = 0; r < n; r++) {
-        for (c = 0; c < n; c++) {
-            after[c][n - 1 - r] = temp[r][c];
+// 函数声明（原型）
+void rotate(char start[MAX_SIZE][MAX_SIZE], char result[MAX_SIZE][MAX_SIZE], int size, int degrees);
+void reflectHorz(char start[MAX_SIZE][MAX_SIZE], char result[MAX_SIZE][MAX_SIZE], int size);
+void reflectVert(char start[MAX_SIZE][MAX_SIZE], char result[MAX_SIZE][MAX_SIZE], int size);
+int isEqual(char start[MAX_SIZE][MAX_SIZE], char end[MAX_SIZE][MAX_SIZE], int size);
+int change(char start[MAX_SIZE][MAX_SIZE], char end[MAX_SIZE][MAX_SIZE], int size);
+
+// 旋转矩阵函数
+void rotate(char start[MAX_SIZE][MAX_SIZE], char result[MAX_SIZE][MAX_SIZE], int size, int degrees) {
+    int i, j;
+    if (degrees == 180) {
+        // 如果旋转180度，等价于水平和垂直翻转
+        char temp[MAX_SIZE][MAX_SIZE];
+        reflectVert(start, temp, size);
+        reflectHorz(temp, result, size);
+    } else if (degrees == 90) {
+        // 旋转90度
+        for (i = 0; i < size; i++) {
+            for (j = 0; j < size; j++) {
+                result[i][j] = start[size - 1 - j][i];
+            }
+        }
+    } else if (degrees == 270) {
+        // 旋转270度
+        for (i = 0; i < size; i++) {
+            for (j = 0; j < size; j++) {
+                result[i][j] = start[j][size - 1 - i];
+            }
         }
     }
 }
 
-void reflect() {
-    int r, c;
-    for (r = 0; r < n; r++) {
-        for (c = 0; c < n; c++) {
-            after[r][n - 1 - c] = temp[r][c];
+// 水平反射
+void reflectHorz(char start[MAX_SIZE][MAX_SIZE], char result[MAX_SIZE][MAX_SIZE], int size) {
+    int i, j;
+    for (i = 0; i < size; i++) {
+        for (j = 0; j < size; j++) {
+            result[i][j] = start[i][size - j - 1];
         }
     }
 }
 
-int eqboard() {
-    int r, c;
-    for (r = 0; r < n; r++) {
-        for (c = 0; c < n; c++) {
-            if (before[r][c] != after[r][c]) {
+// 垂直反射
+void reflectVert(char start[MAX_SIZE][MAX_SIZE], char result[MAX_SIZE][MAX_SIZE], int size) {
+    int i, j;
+    for (i = 0; i < size; i++) {
+        for (j = 0; j < size; j++) {
+            result[i][j] = start[size - i - 1][j];
+        }
+    }
+}
+
+// 比较两个矩阵是否相等
+int isEqual(char start[MAX_SIZE][MAX_SIZE], char end[MAX_SIZE][MAX_SIZE], int size) {
+    int i, j;
+    for (i = 0; i < size; i++) {
+        for (j = 0; j < size; j++) {
+            if (start[i][j] != end[i][j]) {
                 return 0;
             }
         }
@@ -34,59 +70,89 @@ int eqboard() {
     return 1;
 }
 
+// 判断变换类型
+int change(char start[MAX_SIZE][MAX_SIZE], char end[MAX_SIZE][MAX_SIZE], int size) {
+    char temp[MAX_SIZE][MAX_SIZE];
+
+    rotate(start, temp, size, 90);
+    if (isEqual(temp, end, size)) {
+        return 1;
+    }
+
+    rotate(start, temp, size, 180);
+    if (isEqual(temp, end, size)) {
+        return 2;
+    }
+
+    rotate(start, temp, size, 270);
+    if (isEqual(temp, end, size)) {
+        return 3;
+    }
+
+    reflectHorz(start, temp, size);
+    if (isEqual(temp, end, size)) {
+        return 4;
+    }
+
+    char reflected[MAX_SIZE][MAX_SIZE];
+    reflectHorz(start, reflected, size);
+
+    rotate(reflected, temp, size, 90);
+    if (isEqual(temp, end, size)) {
+        return 5;
+    }
+
+    rotate(reflected, temp, size, 180);
+    if (isEqual(temp, end, size)) {
+        return 5;
+    }
+
+    rotate(reflected, temp, size, 270);
+    if (isEqual(temp, end, size)) {
+        return 5;
+    }
+
+    if (isEqual(start, end, size)) {
+        return 6;
+    }
+
+    return 7;
+}
+
+// 主函数
 int main() {
-    FILE *fout = fopen("transform.out", "w");
     FILE *fin = fopen("transform.in", "r");
-    int r, c, change = 7;
+    FILE *fout = fopen("transform.out", "w");
 
-    fscanf(fin, "%d", &n);
+    if (fin == NULL || fout == NULL) {
+        printf("Error opening file.\n");
+        return 1;
+    }
 
-    for (r = 0; r < n; r++) {
-        for (c = 0; c < n; c++) {
-            fscanf(fin, " %c", &before[r][c]);
+    while (!feof(fin)) {
+        int size;
+        fscanf(fin, "%d", &size);
+
+        char start[MAX_SIZE][MAX_SIZE];
+        char end[MAX_SIZE][MAX_SIZE];
+
+        // 读取初始矩阵
+        for (int i = 0; i < size; i++) {
+            fscanf(fin, "%s", start[i]);
         }
-    }
 
-    for (r = 0; r < n; r++) {
-        for (c = 0; c < n; c++) {
-            fscanf(fin, " %c", &after[r][c]);
+        // 读取目标矩阵
+        for (int i = 0; i < size; i++) {
+            fscanf(fin, "%s", end[i]);
         }
+
+        // 计算变换类型
+        int result = change(start, end, size);
+        fprintf(fout, "%d\n", result);
     }
 
-    // Copy the before board to temp
-    memcpy(temp, before, sizeof(before));
-
-    // Check rotations
-    for (int i = 1; i <= 3; i++) {
-        rotate();
-        if (eqboard()) {
-            change = i;
-            break;
-        }
-    }
-
-    // 重置
-    memcpy(temp, before, sizeof(before));
-    reflect();
-    for (int i = 0; i <= 3; i++) {
-        if (eqboard()) {
-            change = 4 + (i > 0);
-            break;
-        }
-        rotate();
-    }
-
-    // 检查一下
-    memcpy(temp, before, sizeof(before));
-    if (eqboard()) {
-        change = 6;
-    }
-
-    fprintf(fout, "%d\n", change);
-
-    //跟你学会关上文件了
     fclose(fin);
     fclose(fout);
-    
+
     return 0;
 }
