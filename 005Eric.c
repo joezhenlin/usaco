@@ -76,3 +76,6 @@ int main(void) {
     
     return 0;
 }
+
+// to Dad: This program runs very well in this IDE, but seemingly not in USACO Grader. It seems
+// like my code was stopped midrun. Could you help me find the reason for that?
