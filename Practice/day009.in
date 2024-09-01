@@ -1,0 +1,119 @@
+// Practice 1-23
+
+// Question: Write a code which deletes all comments
+// 题目：写一个删除程序中所有注释的程序
+
+#include <stdio.h>
+#include <string.h>
+
+#define MAXLEN 100
+
+int isWhiteSpace(char c) {
+    if (c == " " || c == "\t" || c == "\n") {
+        return 1;
+    } else {return 0;}
+}
+
+int main(void) {
+    FILE *fin = fopen("day009.in", "r");
+    FILE *fout = fopen("day009.out", "w"); // HELLO THERE
+
+    char line[MAXLEN]; // PLEASE DO NOT DELETE ME
+    int comment = 0; // U KNOW WHAT JUST KIDDING KILL MEH
+
+    /*
+    This is very very large comment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    told you it was large
+    */
+
+    /* In comparison, I'm so small! Why is the world just unfair D: */
+
+    while (1) {
+        fgets(line, MAXLEN, fin);
+
+        for (int i = 0; i < strlen(line) - 1; i++) {
+            if (isWhiteSpace(line[i])) {continue;}
+            
+            if (comment == 0 && line[i] == "/") {
+                comment = 1;
+            } else if (comment == 1 && line[i] == "/") {
+                comment = 2; break;
+            } else if (comment == 1 && line[i] == "*") {
+                comment = 3; break;
+            } else if (comment == 3 && line[i] == "*") {
+                comment = 4;
+            } else if (comment == 4 && line[i] == "/") {
+                comment = 5;
+            }
+        }
+
+        if (comment == 2 || comment == 5) {
+            comment = 0;
+            continue;
+        } else if (comment == 3) {
+            continue;
+        } else {
+            for (int i = 0; i < strlen(line) - 1; i++) {
+                fputc(line[i], fout);
+            }
+            if (!feof(fin)) {fputc("\n", fout);}
+        }
+
+        if (feof(fin)) {
+            break;
+        }
+    }
+
+    fclose(fin);
+    fclose(fout);
+
+    return 0;
+}
